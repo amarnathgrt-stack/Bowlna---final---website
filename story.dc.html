@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#FDF9EC;color:#2C2A24;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  @keyframes bwRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .bw-rise{animation:bwRise .8s cubic-bezier(.2,.7,.2,1) both}
+  .bw-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  .bw-card:hover{transform:translateY(-7px)}
+  .bw-link{position:relative}
+  .bw-link::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:0;background:#E9A93C;transition:width .3s}
+  .bw-link:hover::after{width:100%}
+  .bw-btnp{transition:transform .2s,box-shadow .3s}
+  .bw-btnp:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(233,169,60,.42)}
+  .bw-btns{transition:background .2s,color .2s,border-color .2s}
+  .bw-btns:hover{background:#2C2A24;color:#FDF9EC;border-color:#2C2A24}
+  @media(max-width:880px){
+    .bw-desktop-links{display:none!important}
+    .bw-menu-btn{display:inline-flex!important}
+    .bw-2col{grid-template-columns:1fr!important}
+    .bw-phase{grid-template-columns:1fr!important}
+    .bw-phase-num{margin-bottom:6px!important}
+  }
+  @media(max-width:560px){.bw-foot-grid{grid-template-columns:1fr 1fr!important}}
+</style>
+</helmet>
+
+<div style="background:#FDF9EC;min-height:100vh">
+  <div style="background:#2E4034;color:#FDF9EC;font-size:13px;letter-spacing:.04em;text-align:center;padding:9px 16px;font-weight:500">Now serving fresh at <strong style="color:#F4C251;font-weight:700">Microsoft Commons</strong> · Redmond, WA · Mon–Fri 11–2</div>
+
+  <header style="{{ headerStyle }}">
+    <nav style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="index.dc.html" style="display:flex;align-items:center;gap:10px"><div role="img" aria-label="Bowlna" style="{{ logoStyle }}"></div></a>
+      <div class="bw-desktop-links" style="display:flex;align-items:center;gap:30px;font-weight:600;font-size:15.5px;color:#FDF9EC">
+        <a class="bw-link" href="menu.dc.html">Menu</a>
+        <a class="bw-link" href="story.dc.html" style="color:#F4C251">Our Story</a>
+        <a class="bw-link" href="journal.dc.html">Stories</a>
+        <a class="bw-link" href="franchise.dc.html">Franchise</a>
+        <a class="bw-link" href="contact.dc.html">Contact</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <a class="bw-btnp" href="contact.dc.html#visit" style="background:#F4C251;color:#2C2A24;font-weight:700;font-size:15px;padding:11px 22px;border-radius:999px;box-shadow:0 6px 18px rgba(233,169,60,.35);white-space:nowrap">Find us</a>
+        <button class="bw-menu-btn" onClick="{{ toggleMobile }}" aria-label="Menu" style="display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(244,194,81,.4);background:transparent;border-radius:12px;cursor:pointer;color:#F4C251"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      </div>
+    </nav>
+    <div style="max-width:1240px;margin:0 auto;padding:0 24px;overflow:hidden;max-height:{{ mobileMax }};transition:max-height .3s ease">
+      <div style="display:flex;flex-direction:column;gap:4px;padding:8px 0 18px;font-weight:600;font-size:17px;color:#FDF9EC">
+        <a href="menu.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(253,249,236,.14)">Menu</a>
+        <a href="story.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(253,249,236,.14);color:#F4C251">Our Story</a>
+        <a href="journal.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(253,249,236,.14)">Stories</a>
+        <a href="franchise.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(253,249,236,.14)">Franchise</a>
+        <a href="contact.dc.html" style="padding:11px 6px">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;background:#2E4034;color:#FDF9EC">
+    <img src="assets/mural.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.07">
+    <div class="bw-rise" style="max-width:920px;margin:0 auto;padding:clamp(64px,9vw,120px) 24px;text-align:center;position:relative">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#F4C251;margin-bottom:22px">Our Story</div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(40px,6.5vw,82px);line-height:1.04;letter-spacing:-.02em;margin:0 0 24px">Indian flavor,<br>made for <em style="font-style:italic;color:#F4C251">everyday.</em></h1>
+      <p style="font-size:clamp(17px,1.5vw,21px);line-height:1.6;color:#CBD8CF;max-width:33em;margin:0 auto">Bowlna started with a simple idea: Indian flavors deserve a modern everyday format. Not a heavy meal. Not a once-in-a-while craving — just a fresh, customizable bowl for whenever you want something flavorful and satisfying.</p>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITY -->
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+    <div class="bw-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px);align-items:center">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:18px">The idea</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,46px);line-height:1.1;letter-spacing:-.015em;margin:0 0 22px">A simple idea, done right.</h2>
+        <p style="font-size:18px;line-height:1.65;color:#5C584E;margin:0 0 18px">Not a heavy meal. Not a once-in-a-while craving. A fresh, customizable bowl you can eat for lunch, after a workout, between meetings, or whenever you want something flavorful and satisfying.</p>
+        <p style="font-size:18px;line-height:1.65;color:#5C584E;margin:0">Our bowls bring together wholesome bases, proteins, slow-cooked sauces, fresh toppings, chutneys, and crunch — inspired by the flavors many of us grew up with, but designed for everyone.</p>
+        <div style="margin-top:28px">
+          <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9A937F;margin-bottom:12px">Bowlna is for —</div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <span style="background:#FDF3D9;color:#7a5a14;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14.5px">the flavor-curious</span>
+            <span style="background:#E8F1EB;color:#3f6450;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14.5px">the health-conscious</span>
+            <span style="background:#FDF3D9;color:#7a5a14;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14.5px">the homesick</span>
+            <span style="background:#E8F1EB;color:#3f6450;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14.5px">the busy</span>
+            <span style="background:#2C2A24;color:#F4C251;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14.5px">the hungry</span>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <img src="assets/round.png" alt="A Bowlna bowl" style="width:100%;border-radius:24px;box-shadow:0 30px 60px -28px rgba(44,42,36,.45);display:block">
+        <div style="position:absolute;bottom:-24px;left:-20px;background:#F4C251;color:#2C2A24;border-radius:16px;padding:18px 22px;box-shadow:0 18px 40px -14px rgba(0,0,0,.3);max-width:62%">
+          <div style="font-family:'Newsreader',serif;font-style:italic;font-size:19px;line-height:1.3">“Your Bowl. Your Way.”</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMFORT + CONTROL -->
+  <section style="background:#fff;border-top:1px solid rgba(44,42,36,.10);border-bottom:1px solid rgba(44,42,36,.10)">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px;text-align:center">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:18px">Our core idea</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,5vw,68px);line-height:1.04;letter-spacing:-.02em;margin:0 0 18px">Comfort <span style="color:#E9A93C">+</span> Control</h2>
+      <p style="font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:#5C584E;max-width:34em;margin:0 auto 48px">The warmth of a home-cooked Indian meal, with the freedom to make it exactly how you want it. That tension — comfort and control — shapes every decision we make.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:980px;margin:0 auto">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+          <div class="bw-card" style="background:#FDF9EC;border:1px solid rgba(44,42,36,.10);border-radius:20px;padding:30px 26px;text-align:left">
+            <div style="font-family:'Newsreader',serif;font-size:30px;color:#E9A93C;margin-bottom:12px">{{ p.n }}</div>
+            <div style="font-weight:700;font-size:18px;margin-bottom:8px">{{ p.t }}</div>
+            <div style="font-size:15px;color:#5C584E;line-height:1.55">{{ p.d }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEALTHY BY DESIGN -->
+  <section style="position:relative;overflow:hidden">
+    <div class="bw-2col" style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,72px);align-items:center">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:18px">Healthy by design</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,46px);line-height:1.1;letter-spacing:-.015em;margin:0 0 20px">Big flavor. Light finish.</h2>
+        <p style="font-size:18px;line-height:1.65;color:#5C584E;margin:0 0 28px;max-width:32em">Every bowl is built to nourish, not weigh you down. We start with lean proteins and wholesome bases, layer flavor through a measured pour of sauce — depth without heaviness — and finish at a fresh bar of crisp vegetables and herbs. Real Indian flavor, balanced for everyday eating.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 22px">
+          <sc-for list="{{ healthy }}" as="h" hint-placeholder-count="4">
+            <div style="display:flex;align-items:flex-start;gap:11px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B997E" stroke-width="2.4" style="flex:none;margin-top:1px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="font-size:15.5px;color:#3f3b33;line-height:1.45;font-weight:600">{{ h }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:relative">
+        <img src="assets/round.png" alt="A fresh, balanced Bowlna bowl" style="width:100%;border-radius:24px;box-shadow:0 30px 60px -30px rgba(44,42,36,.45);display:block">
+        <div style="position:absolute;bottom:-22px;right:-14px;background:#6B997E;color:#FDF9EC;border-radius:16px;padding:16px 20px;box-shadow:0 18px 40px -14px rgba(0,0,0,.3);text-align:center">
+          <div style="font-family:'Newsreader',serif;font-size:30px;font-weight:600;line-height:1;color:#F4C251">2 oz</div>
+          <div style="font-size:12px;font-weight:600;margin-top:4px;color:#EAF1EC">sauce, poured<br>with intention</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAVOR MAP -->
+  <section style="position:relative;overflow:hidden">
+    <img src="assets/paisley.png" alt="" aria-hidden="true" style="position:absolute;left:-40px;top:40px;width:150px;opacity:.12">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+      <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:16px">A map of flavor</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0 0 16px">Six cities. Six flavor stories.</h2>
+        <p style="font-size:18px;line-height:1.6;color:#5C584E;margin:0">India isn't one cuisine — it's dozens. Each signature bowl is anchored to a region and the flavor logic that defines it, from the Golden Temple of Amritsar to the harbor of Madras.</p>
+      </div>
+      <div style="max-width:760px;margin:0 auto;background:#FDF9EC;border:1px solid rgba(44,42,36,.10);border-radius:24px;padding:clamp(16px,2.5vw,36px);box-shadow:0 30px 60px -34px rgba(44,42,36,.4)">
+        <img src="assets/flavormap.jpg" alt="Map of India showing Bowlna's six signature bowls by city — Amritsar Veg, Delhi Chicken, Kolkata Veg, Bombay Street Chicken, Hyderabad Lamb, and Madras Chicken" style="width:100%;height:auto;display:block;border-radius:12px">
+      </div>
+      <div style="text-align:center;margin-top:34px">
+        <a class="bw-btnp" href="menu.dc.html" style="display:inline-block;background:#F4C251;color:#2C2A24;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px;box-shadow:0 10px 24px rgba(233,169,60,.32)">Explore the bowls</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE JOURNEY -->
+  <section style="max-width:1080px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+    <div style="text-align:center;max-width:640px;margin:0 auto 56px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:16px">From idea to bowl</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0">Eleven decisions that built Bowlna.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <sc-for list="{{ phases }}" as="ph" hint-placeholder-count="6">
+        <div class="bw-phase" style="display:grid;grid-template-columns:130px 1fr;gap:28px;padding:26px 0;border-top:1px solid rgba(44,42,36,.12)">
+          <div class="bw-phase-num" style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-family:'Newsreader',serif;font-size:40px;font-weight:600;color:#E9A93C;line-height:1">{{ ph.num }}</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9A937F">{{ ph.phase }}</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:600;font-size:23px;margin:0 0 8px;letter-spacing:-.01em">{{ ph.title }}</h3>
+            <p style="font-size:16px;line-height:1.6;color:#5C584E;margin:0">{{ ph.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SUSTAINABILITY -->
+  <section id="sustainability" style="position:relative;background:#6B997E;color:#FDF9EC;overflow:hidden">
+    <img src="assets/paisley.png" alt="" aria-hidden="true" style="position:absolute;right:-40px;top:-40px;width:240px;opacity:.18">
+    <div class="bw-2col" style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,72px);align-items:center;position:relative">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#FDF9EC;opacity:.8;margin-bottom:18px">How we source</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,50px);line-height:1.1;letter-spacing:-.015em;margin:0 0 20px">Authentic in flavor.<br>Responsible in practice.</h2>
+        <p style="font-size:18px;line-height:1.65;color:#EAF1EC;margin:0;max-width:30em">Flavor depth in Indian food comes from sauces, not shortcuts. Our gravies are centrally produced from spices sourced at origin — consistent, never diluted, and built to scale responsibly.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <sc-for list="{{ commitments }}" as="c" hint-placeholder-count="4">
+          <div style="background:rgba(253,249,236,.10);border:1px solid rgba(253,249,236,.22);border-radius:16px;padding:24px">
+            <div style="font-weight:700;font-size:17px;margin-bottom:8px">{{ c.t }}</div>
+            <div style="font-size:14px;color:#EAF1EC;line-height:1.55">{{ c.d }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY LEARNINGS -->
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+    <div style="text-align:center;max-width:600px;margin:0 auto 50px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:16px">What we learned</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0">Five truths that guide us.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+      <sc-for list="{{ learnings }}" as="l" hint-placeholder-count="5">
+        <div class="bw-card" style="background:#2C2A24;color:#FDF9EC;border-radius:18px;padding:28px 24px">
+          <div style="font-family:'Newsreader',serif;font-size:28px;color:#F4C251;margin-bottom:14px">{{ l.n }}</div>
+          <div style="font-weight:700;font-size:18px;line-height:1.25">{{ l.t }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="max-width:1240px;margin:0 auto;padding:0 24px clamp(64px,8vw,100px)">
+    <div style="background:#F4C251;border-radius:28px;padding:clamp(40px,5vw,72px);text-align:center;position:relative;overflow:hidden">
+      <img src="assets/mortar.png" alt="" aria-hidden="true" style="position:absolute;left:-40px;bottom:-50px;width:220px;opacity:.4">
+      <div style="position:relative">
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.06;letter-spacing:-.015em;margin:0 0 16px;color:#2C2A24">Taste the story for yourself.</h2>
+        <p style="font-size:18px;color:#5a481f;margin:0 0 28px">Your bowl. Your way. Now serving at Microsoft Commons.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a class="bw-btns" href="menu.dc.html" style="background:#2C2A24;color:#FDF9EC;border:1.6px solid #2C2A24;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px">Build Your Bowl</a>
+          <a class="bw-btns" href="journal.dc.html" style="border:1.6px solid #2C2A24;color:#2C2A24;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px">Read our stories</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#26241F;color:#E9E4D6">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,72px) 24px 40px">
+      <div class="bw-foot-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px;border-bottom:1px solid rgba(253,249,236,.14)">
+        <div>
+          <img src="assets/logo-white.png" alt="Bowlna" style="height:36px;width:auto;margin-bottom:18px">
+          <p style="font-size:14.5px;color:#A19B8C;line-height:1.6;margin:0 0 20px;max-width:24em">Comfort + Control. Modern Indian food, built your way.</p>
+          <div style="display:flex;gap:12px">
+            <sc-for list="{{ socials }}" as="so" hint-placeholder-count="4">
+              <a href="{{ so.url }}" target="_blank" rel="noopener" aria-label="{{ so.name }}" class="bw-btns" style="width:42px;height:42px;border-radius:999px;border:1px solid rgba(253,249,236,.22);display:flex;align-items:center;justify-content:center;color:#E9E4D6"><span innerHTML="{{ so.svg }}"></span></a>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E887A;margin-bottom:18px">Explore</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+            <a class="bw-link" href="menu.dc.html">Menu</a>
+            <a class="bw-link" href="story.dc.html">Our Story</a>
+            <a class="bw-link" href="journal.dc.html">Stories</a>
+            <a class="bw-link" href="storybook.dc.html">Brand Storybook</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E887A;margin-bottom:18px">Company</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+            <a class="bw-link" href="franchise.dc.html">Franchise</a>
+            <a class="bw-link" href="contact.dc.html">Contact</a>
+            <a class="bw-link" href="contact.dc.html#feedback">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E887A;margin-bottom:18px">Visit</div>
+          <div style="font-size:14.5px;color:#A19B8C;line-height:1.65">Microsoft Commons<br>Redmond, WA 98052<br>Mon–Fri 11–2<br><a class="bw-link" href="mailto:Bowlna@knseattle.com" style="color:#F4C251;font-weight:600;display:inline-block;margin-top:10px">Bowlna@knseattle.com</a></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding-top:26px;font-size:13.5px;color:#8E887A">
+        <div>© {{ year }} Bowlna. Your bowl. Your way.</div>
+        <div style="display:flex;gap:22px"><a class="bw-link" href="#">Privacy</a><a class="bw-link" href="#">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;logoHeight&quot;: { &quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 48, &quot;min&quot;: 28, &quot;max&quot;: 88, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;logoVariant&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Yellow&quot;, &quot;White&quot;, &quot;Dark&quot;], &quot;default&quot;: &quot;Yellow&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;navBg&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#2C2A24&quot;, &quot;options&quot;: [&quot;#2C2A24&quot;, &quot;#2E4034&quot;, &quot;#182a14&quot;], &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  state = { mobileOpen:false };
+  toggleMobile = () => this.setState(s => ({ mobileOpen: !s.mobileOpen }));
+  renderVals() {
+    const ig = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#F4C251" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>';
+    const tk = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3v3.2a5.8 5.8 0 0 0 4 1.6v3a8.7 8.7 0 0 1-4-1v6.1a6 6 0 1 1-6-6c.34 0 .67.03 1 .08v3.1a3 3 0 1 0 2 2.82V3h3z"/></svg>';
+    const li = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
+    const fb = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
+    const navBg = this.props.navBg ?? '#2C2A24';
+    const lh = this.props.logoHeight ?? 48;
+    const lv = this.props.logoVariant ?? 'Yellow';
+    const logoVariants = { Yellow:'assets/logo-yellow.png', White:'assets/logo-white.png', Dark:'assets/logo-dark.png' };
+    const logoSrc = logoVariants[lv] || logoVariants.Yellow;
+    const headerStyle = 'position:sticky;top:0;z-index:60;background:'+navBg+';backdrop-filter:blur(12px);border-bottom:1px solid rgba(253,249,236,.12)';
+    const logoStyle = 'height:'+lh+'px;width:'+Math.round(lh*2.5)+'px;background-image:url('+logoSrc+');background-size:contain;background-repeat:no-repeat;background-position:left center;display:block';
+    return {
+      year: new Date().getFullYear(),
+      headerStyle,
+      logoStyle,
+      mobileMax: this.state.mobileOpen ? '320px' : '0px',
+      toggleMobile: this.toggleMobile,
+      healthy: [
+        'Lean proteins & supergreen bases',
+        'A measured pour — flavor, not heaviness',
+        'No artificial colors or preservatives',
+        'Veg, vegan & dairy-free friendly',
+      ],
+      pillars: [
+        { n:'①', t:'Comfort', d:'Warm bowls, layered gravies, the feeling of a home-cooked meal.' },
+        { n:'②', t:'Control', d:'Build it your way — base, protein, gravy, spice. Optimal choice, not infinite choice.' },
+        { n:'③', t:'Consistency', d:'Centrally produced gravies mean the bowl you love tastes the same every time.' },
+      ],
+      phases: [
+        { num:'01', phase:'Opportunity', title:'A gap hiding in plain sight', body:'Indian food was loved but boxed in — seen as heavy, complex, and impossible to customize or eat every day. We saw the format, not the cuisine, as the thing to fix.' },
+        { num:'02', phase:'Format', title:'A warm-bowl system', body:'We committed to a bowl-based format built around warm bowls — because warmth increases comfort, and comfort drives people to come back.' },
+        { num:'03', phase:'Hybrid model', title:'Build-your-own meets signature', body:'BYOB plus Signature Bowls. Signature bowls reduce decision fatigue and convert first-timers; building your own keeps regulars coming back.' },
+        { num:'04', phase:'Architecture', title:'Gravy as the core', body:'Our breakthrough: a gravy-based system. Flavor depth in Indian food lives in the sauces, not the toppings — so we built the whole experience around them.' },
+        { num:'05', phase:'Portioning', title:'A standardized pour', body:'A consistent 2 oz gravy per bowl. Fullness, we learned, is driven by composition and balance — not sheer quantity.' },
+        { num:'06', phase:'Simplification', title:'Optimal, not maximum', body:'We resisted endless options. The goal was never maximum choice — it was the optimal set of choices that feel effortless.' },
+        { num:'07', phase:'Brand', title:'Modern Indian, your way', body:'A modern Indian bowl brand built on Comfort + Control, and one promise that says it all: Your Bowl. Your Way.' },
+        { num:'08', phase:'Design', title:'Steam-line storytelling', body:'Sage green and turmeric yellow, with a steam-line motif that carries the story across the space — warm, layered, and unmistakably Bowlna.' },
+        { num:'09', phase:'Pricing', title:'Fair and familiar', body:'Tiered in line with the fast-casual leaders — accessible everyday pricing that fits the way people actually eat at work.' },
+        { num:'10', phase:'Operations', title:'Built to scale', body:'An assembly-line model with centralized gravy production: consistent flavor, fast service, and a system that scales cleanly.' },
+        { num:'11', phase:'Go-to-market', title:'Start where people are', body:'We launched inside Microsoft corporate locations — a captive, daily audience to learn from fast, optimize with, and grow from.' },
+      ],
+      commitments: [
+        { t:'Spices at origin', d:'Traditional blends sourced from their source regions.' },
+        { t:'Centrally made', d:'Gravies produced centrally for consistent, scalable quality.' },
+        { t:'Never diluted', d:'Authentic recipes, balanced — never watered down.' },
+        { t:'Low-waste packaging', d:'Compostable and recyclable by design.' },
+      ],
+      learnings: [
+        { n:'01', t:'Format beats cuisine' },
+        { n:'02', t:'Simplicity wins' },
+        { n:'03', t:'Perception is engineering' },
+        { n:'04', t:'Signature bowls drive adoption' },
+        { n:'05', t:'Operations drive the brand' },
+      ],
+      socials: [
+        { name:'Instagram', url:'https://www.instagram.com/bowlnausa/', svg:ig },
+        { name:'TikTok', url:'https://tiktok.com/@eatbowlna', svg:tk },
+        { name:'LinkedIn', url:'https://linkedin.com/company/bowlna', svg:li },
+        { name:'Facebook', url:'https://facebook.com/eatbowlna', svg:fb },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

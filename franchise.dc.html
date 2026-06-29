@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#FDF9EC;color:#2C2A24;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  @keyframes bwRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .bw-rise{animation:bwRise .8s cubic-bezier(.2,.7,.2,1) both}
+  .bw-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  .bw-card:hover{transform:translateY(-7px)}
+  .bw-link{position:relative}
+  .bw-link::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:0;background:#E9A93C;transition:width .3s}
+  .bw-link:hover::after{width:100%}
+  .bw-btnp{transition:transform .2s,box-shadow .3s}
+  .bw-btnp:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(233,169,60,.42)}
+  .bw-btns{transition:background .2s,color .2s,border-color .2s}
+  .bw-btns:hover{background:#2C2A24;color:#FDF9EC;border-color:#2C2A24}
+  .bw-input{width:100%;background:#FDF9EC;border:1.5px solid rgba(44,42,36,.18);color:#2C2A24;border-radius:14px;padding:14px 16px;font-size:15.5px;font-family:inherit;outline:none;transition:border-color .2s}
+  .bw-input:focus{border-color:#E9A93C}
+  .bw-input::placeholder{color:#A9A293}
+  @media(max-width:880px){
+    .bw-desktop-links{display:none!important}
+    .bw-menu-btn{display:inline-flex!important}
+    .bw-hero{grid-template-columns:1fr!important}
+    .bw-formgrid{grid-template-columns:1fr!important}
+    .bw-2col{grid-template-columns:1fr!important}
+    .bw-2{grid-template-columns:1fr!important}
+  }
+  @media(max-width:560px){.bw-foot-grid{grid-template-columns:1fr 1fr!important}}
+</style>
+</helmet>
+
+<div style="background:#FDF9EC;min-height:100vh">
+  <div style="background:#2E4034;color:#FDF9EC;font-size:13px;letter-spacing:.04em;text-align:center;padding:9px 16px;font-weight:500">Now serving fresh at <strong style="color:#F4C251;font-weight:700">Microsoft Commons</strong> · Redmond, WA · Mon–Fri 11–2</div>
+
+  <header style="position:sticky;top:0;z-index:60;background:rgba(253,249,236,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(44,42,36,.10)">
+    <nav style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="index.dc.html" style="display:flex;align-items:center;gap:10px"><img src="assets/logo-dark.png" alt="Bowlna" style="height:34px;width:auto;display:block"></a>
+      <div class="bw-desktop-links" style="display:flex;align-items:center;gap:30px;font-weight:600;font-size:15.5px">
+        <a class="bw-link" href="menu.dc.html">Menu</a>
+        <a class="bw-link" href="story.dc.html">Our Story</a>
+        <a class="bw-link" href="journal.dc.html">Stories</a>
+        <a class="bw-link" href="franchise.dc.html" style="color:#E9A93C">Franchise</a>
+        <a class="bw-link" href="contact.dc.html">Contact</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <a class="bw-btnp" href="#interest" style="background:#F4C251;color:#2C2A24;font-weight:700;font-size:15px;padding:11px 22px;border-radius:999px;box-shadow:0 6px 18px rgba(233,169,60,.35);white-space:nowrap">Get in touch</a>
+        <button class="bw-menu-btn" onClick="{{ toggleMobile }}" aria-label="Menu" style="display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(44,42,36,.18);background:transparent;border-radius:12px;cursor:pointer;color:#2C2A24"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button>
+      </div>
+    </nav>
+    <div style="max-width:1240px;margin:0 auto;padding:0 24px;overflow:hidden;max-height:{{ mobileMax }};transition:max-height .3s ease">
+      <div style="display:flex;flex-direction:column;gap:4px;padding:8px 0 18px;font-weight:600;font-size:17px">
+        <a href="menu.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(44,42,36,.08)">Menu</a>
+        <a href="story.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(44,42,36,.08)">Our Story</a>
+        <a href="journal.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(44,42,36,.08)">Stories</a>
+        <a href="franchise.dc.html" style="padding:11px 6px;border-bottom:1px solid rgba(44,42,36,.08)">Franchise</a>
+        <a href="contact.dc.html" style="padding:11px 6px">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;background:#F4C251">
+    <img src="assets/mortar.png" alt="" aria-hidden="true" style="position:absolute;right:-40px;bottom:-60px;width:280px;opacity:.35">
+    <div class="bw-hero bw-rise" style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,92px) 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,4vw,64px);align-items:center;position:relative">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7a5a14;margin-bottom:20px">Future Growth</div>
+        <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(40px,6vw,80px);line-height:1.0;letter-spacing:-.02em;margin:0 0 22px;color:#2C2A24">Building something worth scaling.</h1>
+        <p style="font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:#5a481f;max-width:32em;margin:0 0 30px">Bowlna is in the early stages of building a scalable modern bowl concept. We're not franchising yet — we're laying the groundwork: strong operations, consistent food quality, and an experience built to travel beyond one location.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a class="bw-btns" href="#interest" style="background:#2C2A24;color:#FDF9EC;border:1.6px solid #2C2A24;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px">Get in touch</a>
+          <a class="bw-btns" href="#model" style="border:1.6px solid #2C2A24;color:#2C2A24;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px">Our foundation</a>
+        </div>
+      </div>
+      <div style="position:relative">
+        <img src="assets/round.png" alt="Bowlna bowl" style="width:100%;border-radius:24px;box-shadow:0 30px 60px -26px rgba(44,42,36,.5);display:block">
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section style="background:#2C2A24;color:#FDF9EC">
+    <div class="bw-2" style="max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px">
+      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+        <div style="text-align:center">
+          <div style="font-family:'Newsreader',serif;font-size:clamp(34px,4vw,52px);font-weight:600;color:#F4C251;line-height:1">{{ m.v }}</div>
+          <div style="font-size:13.5px;color:#B6B0A1;margin-top:8px;font-weight:600">{{ m.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- WHY BOWLNA -->
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+    <div style="text-align:center;max-width:640px;margin:0 auto 52px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:16px">The concept</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0">A concept built to scale.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4">
+        <div class="bw-card" style="background:#fff;border:1px solid rgba(44,42,36,.10);border-radius:20px;padding:30px 26px">
+          <div style="width:46px;height:46px;border-radius:12px;background:#FDF3D9;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><span innerHTML="{{ r.icon }}"></span></div>
+          <h3 style="font-weight:700;font-size:18.5px;margin:0 0 8px">{{ r.t }}</h3>
+          <p style="font-size:15px;color:#5C584E;line-height:1.55;margin:0">{{ r.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- MODEL -->
+  <section id="model" style="background:#fff;border-top:1px solid rgba(44,42,36,.10);border-bottom:1px solid rgba(44,42,36,.10)">
+    <div style="max-width:1080px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+      <div style="text-align:center;max-width:600px;margin:0 auto 56px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:16px">What we're building</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0">Laying the foundation for growth.</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:24px;padding:24px 0;border-top:1px solid rgba(44,42,36,.12);align-items:start">
+            <span style="font-family:'Newsreader',serif;font-size:42px;font-weight:600;color:#E9A93C;line-height:1">{{ s.n }}</span>
+            <div>
+              <h3 style="font-family:'Newsreader',serif;font-weight:600;font-size:23px;margin:0 0 8px;letter-spacing:-.01em">{{ s.t }}</h3>
+              <p style="font-size:16px;line-height:1.6;color:#5C584E;margin:0">{{ s.d }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEREST FORM -->
+  <section id="interest" style="max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,108px) 24px">
+    <div class="bw-2col" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,64px);align-items:start">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4E7A63;margin-bottom:18px">Future growth</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4vw,50px);line-height:1.08;letter-spacing:-.015em;margin:0 0 20px">We're preparing for what's next.</h2>
+        <p style="font-size:18px;line-height:1.65;color:#5C584E;margin:0 0 18px">We are not currently offering franchises — but we are preparing the foundation for future growth. As we grow, we're focused on strong operations, consistent food quality, training systems, and a guest experience that can work beyond one location.</p>
+        <p style="font-size:18px;line-height:1.65;color:#5C584E;margin:0 0 28px">For future partnership or expansion conversations, please reach out — we'd love to stay in touch.</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ assurances }}" as="a" hint-placeholder-count="3">
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B997E" stroke-width="2.4" style="flex:none;margin-top:1px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="font-size:15.5px;color:#3f3b33;line-height:1.5">{{ a }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:32px;padding:22px 24px;background:#2E4034;color:#FDF9EC;border-radius:18px">
+          <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F4C251;margin-bottom:8px">Prefer email?</div>
+          <a class="bw-link" href="mailto:partners@bowlna.com?subject=Future%20partnership%20%26%20expansion" style="font-size:18px;font-weight:600;color:#FDF9EC">partners@bowlna.com</a>
+        </div>
+      </div>
+
+      <!-- FORM CARD -->
+      <div style="background:#fff;border:1px solid rgba(44,42,36,.10);border-radius:24px;padding:clamp(26px,3vw,40px);box-shadow:0 24px 50px -30px rgba(44,42,36,.4)">
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:36px 12px">
+            <div style="width:64px;height:64px;border-radius:999px;background:#E8F1EB;display:flex;align-items:center;justify-content:center;margin:0 auto 20px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5C8770" stroke-width="2.5"><path d="M20 6 9 17l-5-5"></path></svg></div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:600;font-size:26px;margin:0 0 10px">Thank you — we've got it.</h3>
+            <p style="font-size:16px;color:#5C584E;line-height:1.6;margin:0 0 24px">Your note is on its way. We'll keep your details on file and reach out as future opportunities open up.</p>
+            <button onClick="{{ resetForm }}" class="bw-btns" style="background:none;border:1.6px solid #2C2A24;color:#2C2A24;font-weight:700;font-size:15px;padding:12px 24px;border-radius:999px;cursor:pointer;font-family:inherit">Submit another</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+          <form name="franchise" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit="{{ submit }}">
+            <input type="hidden" name="form-name" value="franchise">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="bw-formgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+              <div><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Full name *</label><input class="bw-input" name="name" required="" placeholder="Your name"></div>
+              <div><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Company / Organization</label><input class="bw-input" name="company" placeholder="Company"></div>
+            </div>
+            <div class="bw-formgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+              <div><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Email *</label><input class="bw-input" type="email" name="email" required="" placeholder="you@company.com"></div>
+              <div><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Phone</label><input class="bw-input" name="phone" placeholder="(555) 000-0000"></div>
+            </div>
+            <div class="bw-formgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+              <div><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Location / Region</label><input class="bw-input" name="location" placeholder="City, State"></div>
+              <div><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Type of site</label>
+                <select class="bw-input" name="site_type" style="appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%235C584E%22 stroke-width=%222.5%22&gt;&lt;path d=%22M6 9l6 6 6-6%22/&gt;&lt;/svg&gt;');background-repeat:no-repeat;background-position:right 16px center">
+                  <option>Corporate / workplace café</option>
+                  <option>Food hall / court</option>
+                  <option>University / campus</option>
+                  <option>Hospital / healthcare</option>
+                  <option>Standalone restaurant</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-bottom:20px"><label style="display:block;font-size:13px;font-weight:700;color:#5C584E;margin-bottom:7px">Your message</label><textarea class="bw-input" name="message" rows="4" placeholder="Tell us a little about you and what you have in mind…" style="resize:vertical"></textarea></div>
+            <button type="submit" class="bw-btnp" style="width:100%;background:#F4C251;color:#2C2A24;font-weight:700;font-size:17px;padding:16px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 10px 24px rgba(233,169,60,.32)">Start the conversation</button>
+            <p style="font-size:12.5px;color:#9A937F;text-align:center;margin:14px 0 0;line-height:1.5">We are not currently offering franchises. We'll keep your details on file for future partnership conversations and never share them.</p>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#26241F;color:#E9E4D6">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,72px) 24px 40px">
+      <div class="bw-foot-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px;border-bottom:1px solid rgba(253,249,236,.14)">
+        <div>
+          <img src="assets/logo-white.png" alt="Bowlna" style="height:36px;width:auto;margin-bottom:18px">
+          <p style="font-size:14.5px;color:#A19B8C;line-height:1.6;margin:0 0 20px;max-width:24em">Comfort + Control. Modern Indian food, built your way.</p>
+          <div style="display:flex;gap:12px">
+            <sc-for list="{{ socials }}" as="so" hint-placeholder-count="4">
+              <a href="{{ so.url }}" target="_blank" rel="noopener" aria-label="{{ so.name }}" class="bw-btns" style="width:42px;height:42px;border-radius:999px;border:1px solid rgba(253,249,236,.22);display:flex;align-items:center;justify-content:center;color:#E9E4D6"><span innerHTML="{{ so.svg }}"></span></a>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E887A;margin-bottom:18px">Explore</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+            <a class="bw-link" href="menu.dc.html">Menu</a>
+            <a class="bw-link" href="story.dc.html">Our Story</a>
+            <a class="bw-link" href="journal.dc.html">Stories</a>
+            <a class="bw-link" href="storybook.dc.html">Brand Storybook</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E887A;margin-bottom:18px">Company</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+            <a class="bw-link" href="franchise.dc.html">Franchise</a>
+            <a class="bw-link" href="contact.dc.html">Contact</a>
+            <a class="bw-link" href="contact.dc.html#feedback">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E887A;margin-bottom:18px">Visit</div>
+          <div style="font-size:14.5px;color:#A19B8C;line-height:1.65">Microsoft Commons<br>Redmond, WA 98052<br>Mon–Fri 11–2<br><a class="bw-link" href="mailto:Bowlna@knseattle.com" style="color:#F4C251;font-weight:600;display:inline-block;margin-top:10px">Bowlna@knseattle.com</a></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding-top:26px;font-size:13.5px;color:#8E887A">
+        <div>© {{ year }} Bowlna. Your bowl. Your way.</div>
+        <div style="display:flex;gap:22px"><a class="bw-link" href="#">Privacy</a><a class="bw-link" href="#">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mobileOpen:false, submitted:false };
+  toggleMobile = () => this.setState(s => ({ mobileOpen: !s.mobileOpen }));
+  resetForm = () => this.setState({ submitted:false });
+  submit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const body = new URLSearchParams(new FormData(form)).toString();
+    const done = () => this.setState({ submitted:true });
+    fetch('/', { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body })
+      .then(done).catch(done);
+  };
+  renderVals() {
+    const ig = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#F4C251" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>';
+    const tk = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3v3.2a5.8 5.8 0 0 0 4 1.6v3a8.7 8.7 0 0 1-4-1v6.1a6 6 0 1 1-6-6c.34 0 .67.03 1 .08v3.1a3 3 0 1 0 2 2.82V3h3z"/></svg>';
+    const li = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
+    const fb = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
+    const ic = (p) => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9762F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
+    return {
+      year: new Date().getFullYear(),
+      mobileMax: this.state.mobileOpen ? '320px' : '0px',
+      toggleMobile: this.toggleMobile,
+      submit: this.submit,
+      resetForm: this.resetForm,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      metrics: [
+        { v:'6', l:'Signature bowls + BYOB' },
+        { v:'2 oz', l:'Standardized gravy pour' },
+        { v:'$9–14', l:'Accessible price tiers' },
+        { v:'1', l:'Central gravy kitchen' },
+      ],
+      reasons: [
+        { t:'Simple operations', d:'An assembly-line model with centralized gravy production — fast service, low complexity, consistent results.', icon: ic('<path d="M3 12h18M3 6h18M3 18h18"/>') },
+        { t:'Built-in variety', d:'BYOB plus signature bowls covers every palate without bloating your kitchen or inventory.', icon: ic('<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18"/>') },
+        { t:'Strong unit economics', d:'Tight menu, optimal choice, and a pour-based system designed around margin and throughput.', icon: ic('<path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 4-5"/>') },
+        { t:'A brand people love', d:'A warm, modern identity with a story worth telling — and bowls worth coming back for.', icon: ic('<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>') },
+      ],
+      steps: [
+        { n:'01', t:'Express interest', d:'Submit the form with your site details. We review every inquiry within two business days.' },
+        { n:'02', t:'Discovery call', d:'We discuss your location, audience, and goals to confirm fit and answer your questions.' },
+        { n:'03', t:'Design & fit-out', d:'We adapt the Bowlna format to your space — line layout, branding, and the steam-line storytelling.' },
+        { n:'04', t:'Train & launch', d:'Your team is trained on the line and central-gravy system, then we open the doors together.' },
+      ],
+      assurances: [
+        'Turnkey setup with full operational playbook and training.',
+        'Central gravy supply for consistent flavor at any scale.',
+        'Brand, design, and marketing support from day one.',
+      ],
+      socials: [
+        { name:'Instagram', url:'https://www.instagram.com/bowlnausa/', svg:ig },
+        { name:'TikTok', url:'https://tiktok.com/@eatbowlna', svg:tk },
+        { name:'LinkedIn', url:'https://linkedin.com/company/bowlna', svg:li },
+        { name:'Facebook', url:'https://facebook.com/eatbowlna', svg:fb },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

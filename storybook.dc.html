@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#D8D2C2;color:#2C2A24;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none;color:inherit}
+  .bw-link{position:relative}
+  .bw-link::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:#E9A93C;transition:width .3s}
+  .bw-link:hover::after{width:100%}
+  .bw-btnp{transition:transform .2s,box-shadow .3s}
+  .bw-btnp:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(233,169,60,.42)}
+  .page{width:820px;max-width:100%;min-height:1090px;margin:0 auto;background:#FDF9EC;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+  .pad{padding:84px 76px}
+  .drop::first-letter{font-family:'Newsreader',serif;font-size:74px;line-height:.8;float:left;color:#E9A93C;padding:8px 12px 0 0;font-weight:600}
+  @media print{
+    body{background:#fff}
+    .noprint{display:none!important}
+    .page{box-shadow:none;margin:0;width:100%;min-height:100vh;page-break-after:always;break-after:page}
+    .bookwrap{gap:0!important;padding:0!important}
+    @page{size:A4;margin:0}
+  }
+  @media(max-width:620px){.pad{padding:44px 30px}.page{min-height:0}}
+</style>
+</helmet>
+
+<div style="background:#D8D2C2;min-height:100vh">
+
+  <!-- WEB TOOLBAR (not printed) -->
+  <div class="noprint" style="position:sticky;top:0;z-index:60;background:#26241F;color:#FDF9EC">
+    <div style="max-width:1100px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="index.dc.html" class="bw-link" style="display:flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;color:#E9E4D6"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Back to site</a>
+      <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#A19B8C;font-weight:700">The Bowlna Storybook</div>
+      <button onClick="{{ doPrint }}" class="bw-btnp" style="background:#F4C251;color:#2C2A24;font-weight:700;font-size:14px;padding:10px 20px;border-radius:999px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>Print / Save PDF</button>
+    </div>
+  </div>
+
+  <div class="bookwrap" style="display:flex;flex-direction:column;gap:30px;padding:36px 16px 70px">
+
+    <!-- COVER -->
+    <div class="page" style="background:#2E4034;color:#FDF9EC;display:flex;flex-direction:column">
+      <img src="assets/mural.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.10">
+      <div class="pad" style="position:relative;display:flex;flex-direction:column;height:100%;flex:1;min-height:1090px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <img src="assets/logo-white.png" alt="Bowlna" style="height:40px;width:auto">
+          <span style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F4C251;font-weight:700">Brand Storybook</span>
+        </div>
+        <div style="margin-top:auto">
+          <div style="font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#F4C251;font-weight:700;margin-bottom:26px">A modern Indian bowl brand</div>
+          <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:84px;line-height:.98;letter-spacing:-.02em;margin:0 0 26px">Your bowl.<br>Your <em style="font-style:italic;color:#F4C251">way.</em></h1>
+          <p style="font-size:20px;line-height:1.6;color:#CBD8CF;max-width:30em;margin:0">The story of how we reimagined Indian food for the modern day — warm, balanced, and built around you.</p>
+        </div>
+        <div style="margin-top:60px;display:flex;align-items:flex-end;justify-content:space-between">
+          <div style="font-size:14px;color:#9DB3A4">First Edition · Redmond, WA</div>
+          <img src="assets/paisley.png" alt="" style="width:120px;opacity:.85">
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENTS + OPENING -->
+    <div class="page">
+      <div class="pad" style="display:flex;flex-direction:column;min-height:1090px">
+        <div style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#E9A93C;font-weight:700;margin-bottom:18px">Contents</div>
+        <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:54px">
+          <sc-for list="{{ toc }}" as="c" hint-placeholder-count="6">
+            <div style="display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(44,42,36,.14)">
+              <span style="font-family:'Newsreader',serif;font-size:22px;color:#E9A93C;font-weight:600;width:42px">{{ c.n }}</span>
+              <span style="font-size:18px;font-weight:600;flex:1">{{ c.t }}</span>
+              <span style="font-size:14px;color:#9A937F">{{ c.p }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;background:#F4C251;border-radius:18px;padding:36px 38px">
+          <div style="font-family:'Newsreader',serif;font-style:italic;font-size:27px;line-height:1.35;color:#2C2A24">"The format was broken — not the cuisine. Get the format right, and the flavor speaks for itself."</div>
+          <div style="margin-top:18px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7a5a14">The founding insight</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 1 -->
+    <div class="page">
+      <div class="pad" style="min-height:1090px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:30px">
+          <span style="font-family:'Newsreader',serif;font-size:60px;color:#E9A93C;font-weight:600;line-height:1">01</span>
+          <div><div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9A937F;font-weight:700">Chapter One</div><h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:34px;margin:2px 0 0;letter-spacing:-.01em">The Insight</h2></div>
+        </div>
+        <p class="drop" style="font-size:18px;line-height:1.75;color:#3f3b33;margin:0 0 22px">Fast-casual dining transformed the way a generation eats. Fresh ingredients, assembled to taste, served fast — it reshaped Mexican food, then Mediterranean. Yet one of the world's great cuisines was left behind. Indian food, rich and beloved, was seen as heavy, complex, and impossible to customize.</p>
+        <p style="font-size:18px;line-height:1.75;color:#3f3b33;margin:0 0 22px">We looked closely and saw something different. The cuisine wasn't the problem. It never had been. The <strong>format</strong> was. Indian food had simply never been given the system that made fast-casual work everywhere else.</p>
+        <p style="font-size:18px;line-height:1.75;color:#3f3b33;margin:0 0 30px">So we set out to build it: the first modern Indian bowl brand designed from the ground up for everyday eating. Authentic in flavor, light in feel, and entirely yours to compose.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <div style="background:#fff;border:1px solid rgba(44,42,36,.10);border-radius:16px;padding:26px"><div style="font-family:'Newsreader',serif;font-size:30px;color:#E9A93C;margin-bottom:8px">Observation</div><p style="font-size:15px;line-height:1.55;color:#5C584E;margin:0">No scaled Indian equivalent of the fast-casual leaders existed.</p></div>
+          <div style="background:#2E4034;color:#FDF9EC;border-radius:16px;padding:26px"><div style="font-family:'Newsreader',serif;font-size:30px;color:#F4C251;margin-bottom:8px">Insight</div><p style="font-size:15px;line-height:1.55;color:#CBD8CF;margin:0">The format is broken — not the cuisine.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 2 -->
+    <div class="page" style="background:#fff">
+      <div class="pad" style="min-height:1090px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:30px">
+          <span style="font-family:'Newsreader',serif;font-size:60px;color:#E9A93C;font-weight:600;line-height:1">02</span>
+          <div><div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9A937F;font-weight:700">Chapter Two</div><h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:34px;margin:2px 0 0;letter-spacing:-.01em">Comfort + Control</h2></div>
+        </div>
+        <p style="font-size:19px;line-height:1.7;color:#3f3b33;margin:0 0 30px;max-width:36em">Every brand needs a core idea — a tension it exists to resolve. Ours is the warmth of a home-cooked Indian meal, held together with the freedom to make it exactly your own.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(44,42,36,.14);border-radius:20px;overflow:hidden;margin-bottom:34px">
+          <div style="padding:34px;border-right:1px solid rgba(44,42,36,.14)"><div style="font-family:'Newsreader',serif;font-size:32px;margin-bottom:10px;color:#C9762F">Comfort</div><p style="font-size:16px;line-height:1.6;color:#5C584E;margin:0">Warm bowls. Layered, slow-built gravies. The familiar embrace of real spice. Food that feels like care.</p></div>
+          <div style="padding:34px;background:#6B997E;color:#FDF9EC"><div style="font-family:'Newsreader',serif;font-size:32px;margin-bottom:10px;color:#F4C251">Control</div><p style="font-size:16px;line-height:1.6;color:#EAF1EC;margin:0">Build it your way — base, protein, gravy, spice, finish. Optimal choice, never overwhelming.</p></div>
+        </div>
+        <p style="font-size:18px;line-height:1.75;color:#3f3b33;margin:0 0 16px">We made an early, deliberate bet on <strong>warm bowls</strong>. A warm bowl reads as a meal, not an assembly. In a busy day it offers a moment of comfort — and comfort, we found, is what brings people back.</p>
+        <p style="font-size:18px;line-height:1.75;color:#3f3b33;margin:0">Hold comfort and control together, and you get food that fits every lifestyle: indulgent when you want it, light when you need it, yours either way.</p>
+      </div>
+    </div>
+
+    <!-- CHAPTER 3 — FLAVOR MAP -->
+    <div class="page">
+      <div class="pad" style="min-height:1090px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="font-family:'Newsreader',serif;font-size:60px;color:#E9A93C;font-weight:600;line-height:1">03</span>
+          <div><div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9A937F;font-weight:700">Chapter Three</div><h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:34px;margin:2px 0 0;letter-spacing:-.01em">A Map of India, in Six Bowls</h2></div>
+        </div>
+        <p style="font-size:18px;line-height:1.7;color:#3f3b33;margin:0 0 28px;max-width:38em">India isn't one cuisine — it's dozens, each shaped by climate, trade, and generations of home cooking. Our signature bowls aren't a greatest-hits list. They're a map, each anchored to a city and the flavor logic that defines it.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+          <sc-for list="{{ cities }}" as="c" hint-placeholder-count="6">
+            <div style="background:#fff;border:1px solid rgba(44,42,36,.10);border-radius:16px;overflow:hidden">
+              <div role="img" aria-label="{{ c.name }}" style="{{ c.imgStyle }}"></div>
+              <div style="padding:14px 16px 18px">
+                <div style="font-family:'Newsreader',serif;font-weight:600;font-size:19px;letter-spacing:-.01em">{{ c.name }}</div>
+                <div style="font-size:13px;color:#5C584E;line-height:1.45;margin-top:4px">{{ c.note }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-size:16px;line-height:1.7;color:#5C584E;margin:30px 0 0;font-style:italic;font-family:'Newsreader',serif">Each signature is also a template — a confident first step for newcomers, and a base for regulars to riff on.</p>
+      </div>
+    </div>
+
+    <!-- CHAPTER 4 — GRAVY -->
+    <div class="page" style="background:#2C2A24;color:#FDF9EC">
+      <div class="pad" style="min-height:1090px;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:30px">
+          <span style="font-family:'Newsreader',serif;font-size:60px;color:#F4C251;font-weight:600;line-height:1">04</span>
+          <div><div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#A19B8C;font-weight:700">Chapter Four</div><h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:34px;margin:2px 0 0;letter-spacing:-.01em">Flavor Lives in the Gravy</h2></div>
+        </div>
+        <p style="font-size:19px;line-height:1.7;color:#E4DECF;margin:0 0 26px;max-width:36em">Our biggest architectural decision was to build the entire system around sauces, not toppings. In Indian cooking, depth comes from gravy — spices bloomed in fat, simmered slowly, layered over time.</p>
+        <div style="display:flex;align-items:center;gap:30px;margin:10px 0 34px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="font-family:'Newsreader',serif;font-size:72px;font-weight:600;color:#F4C251;line-height:1">2 oz</div><div style="font-size:13px;color:#A19B8C;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:6px">Standardized pour</div></div>
+          <p style="font-size:17px;line-height:1.7;color:#CBC5B6;margin:0;flex:1;min-width:240px">It sounds small. It isn't. Fullness and satisfaction are driven by composition and balance — the interplay of base, protein, and sauce — far more than by sheer volume.</p>
+        </div>
+        <div style="margin-top:auto;background:rgba(253,249,236,.07);border:1px solid rgba(253,249,236,.18);border-radius:18px;padding:32px 34px">
+          <div style="font-family:'Newsreader',serif;font-style:italic;font-size:24px;line-height:1.4;color:#FDF9EC">"Producing gravies centrally means the bowl you love tastes the same every visit. Consistency isn't the enemy of authenticity — it's how you protect it at scale."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 5 — SOURCING + RITUAL -->
+    <div class="page">
+      <div class="pad" style="min-height:1090px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+          <span style="font-family:'Newsreader',serif;font-size:60px;color:#E9A93C;font-weight:600;line-height:1">05</span>
+          <div><div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9A937F;font-weight:700">Chapter Five</div><h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:34px;margin:2px 0 0;letter-spacing:-.01em">Sourcing & The Ritual</h2></div>
+        </div>
+        <p style="font-size:18px;line-height:1.72;color:#3f3b33;margin:0 0 24px;max-width:38em">Turmeric, cardamom, dried chilies, cumin — the backbone of every gravy is sourced from the regions that grow it best. Spice at origin isn't a slogan; it's the only way to reach the aromatic depth these recipes were built on. We pair it with low-waste, compostable packaging — food that respects its roots should respect the planet too.</p>
+        <div style="background:#FDF3D9;border-radius:18px;padding:32px 34px">
+          <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7a5a14;font-weight:700;margin-bottom:20px">The build ritual · five steps</div>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <sc-for list="{{ ritual }}" as="s" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:18px;padding:14px 0;border-top:1px solid rgba(44,42,36,.14)">
+                <span style="width:34px;height:34px;border-radius:999px;background:#F4C251;color:#2C2A24;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none">{{ s.n }}</span>
+                <div style="font-weight:700;font-size:17px;width:130px;flex:none">{{ s.t }}</div>
+                <div style="font-size:15px;color:#5a481f;line-height:1.5">{{ s.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.7;color:#5C584E;margin:26px 0 0;font-style:italic;font-family:'Newsreader',serif">The finish is yours — fresh toppings, dry toppings, a finishing sauce, as many as you like. It's the moment a menu item becomes your meal.</p>
+      </div>
+    </div>
+
+    <!-- BRAND IDENTITY -->
+    <div class="page" style="background:#fff">
+      <div class="pad" style="min-height:1090px">
+        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9A937F;font-weight:700;margin-bottom:8px">Appendix</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:38px;margin:0 0 34px;letter-spacing:-.01em">The Brand, in Brief</h2>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A937F;font-weight:700;margin-bottom:16px">Palette</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">
+          <sc-for list="{{ palette }}" as="p" hint-placeholder-count="3">
+            <div style="border:1px solid rgba(44,42,36,.12);border-radius:14px;overflow:hidden">
+              <div style="height:96px;background:{{ p.hex }}"></div>
+              <div style="padding:14px 16px"><div style="font-weight:700;font-size:15px">{{ p.name }}</div><div style="font-size:13px;color:#9A937F;font-family:'Newsreader',serif">{{ p.hex }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:40px">
+          <div>
+            <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A937F;font-weight:700;margin-bottom:14px">Typography</div>
+            <div style="font-family:'Newsreader',serif;font-size:38px;line-height:1;margin-bottom:6px">Newsreader</div>
+            <div style="font-size:14px;color:#5C584E;margin-bottom:20px">Editorial serif — headlines & quotes</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:30px;line-height:1;margin-bottom:6px">Hanken Grotesk</div>
+            <div style="font-size:14px;color:#5C584E">Humanist sans — body & interface</div>
+          </div>
+          <div>
+            <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A937F;font-weight:700;margin-bottom:14px">Voice</div>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:15.5px;color:#3f3b33;line-height:1.5">
+              <div>Warm, confident, never fussy.</div>
+              <div>Authentic in flavor, light in feel.</div>
+              <div>Comfort + Control, in every sentence.</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#2E4034;color:#FDF9EC;border-radius:18px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px">
+          <div><div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#F4C251;font-weight:700;margin-bottom:6px">The promise</div><div style="font-family:'Newsreader',serif;font-size:30px">Your bowl. Your way.</div></div>
+          <img src="assets/logo-white.png" alt="Bowlna" style="height:34px;width:auto">
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK COVER -->
+    <div class="page" style="background:#F4C251;display:flex;flex-direction:column">
+      <div class="pad" style="position:relative;min-height:1090px;display:flex;flex-direction:column">
+        <img src="assets/mortar.png" alt="" style="position:absolute;left:-50px;bottom:-60px;width:280px;opacity:.4">
+        <div style="margin:auto 0;text-align:center;position:relative">
+          <img src="assets/logo-dark.png" alt="Bowlna" style="height:48px;width:auto;margin:0 auto 30px">
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:46px;line-height:1.1;letter-spacing:-.01em;margin:0 0 18px;color:#2C2A24">Warm bowl, like a hug.</h2>
+          <p style="font-size:18px;color:#5a481f;max-width:26em;margin:0 auto">Now serving fresh at Microsoft Commons, Redmond. Come build yours.</p>
+        </div>
+        <div style="position:relative;text-align:center;font-size:13px;color:#7a5a14;font-weight:600">bowlna.com · Bowlna@knseattle.com · © {{ year }} Bowlna</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  doPrint = () => { try { window.print(); } catch(e){} };
+  renderVals() {
+    return {
+      year: new Date().getFullYear(),
+      doPrint: this.doPrint,
+      toc: [
+        { n:'01', t:'The Insight', p:'Origin' },
+        { n:'02', t:'Comfort + Control', p:'Philosophy' },
+        { n:'03', t:'A Map of India, in Six Bowls', p:'Flavor' },
+        { n:'04', t:'Flavor Lives in the Gravy', p:'Craft' },
+        { n:'05', t:'Sourcing & The Ritual', p:'Practice' },
+        { n:'—', t:'The Brand, in Brief', p:'Appendix' },
+      ],
+      cities: [
+        { name:'Delhi', img:'assets/bowl-delhi.png', note:'Smoky, buttery tikka masala.' },
+        { name:'Amritsar', img:'assets/bowl-amritsar.png', note:'Bright, vegetarian, turmeric-ginger.' },
+        { name:'Hyderabad', img:'assets/bowl-madras.png', note:'Royal, slow-cooked rogan josh.' },
+        { name:'Kolkata', img:'assets/bowl-kolkata.png', note:'Gentle, coastal, toasted coconut.' },
+        { name:'Madras', img:'assets/bowl-bombay.png', note:'Fiery pepper heat, tangy finish.' },
+        { name:'Bombay', img:'assets/bowl-hyderabad.png', note:'Street-style, tamarind-mint bold.' },
+      ].map(c => ({ ...c, imgStyle:'width:100%;aspect-ratio:1;background-size:cover;background-position:center;background-image:url('+c.img+')' })),
+      ritual: [
+        { n:'1', t:'Choose a base', d:'Basmati, brown rice, greens, or half & half.' },
+        { n:'2', t:'Pick a protein', d:'Tandoori chicken, lamb, paneer, or chana.' },
+        { n:'3', t:'Choose a gravy', d:'From mild korma to fiery molagu — the heart of the bowl.' },
+        { n:'4', t:'Add veggies', d:'Butter corn, avial, potato shaak, rajma.' },
+        { n:'5', t:'Top it off', d:'Fresh & dry toppings and a finishing sauce — your call.' },
+      ],
+      palette: [
+        { name:'Turmeric Yellow', hex:'#F4C251' },
+        { name:'Sage Green', hex:'#6B997E' },
+        { name:'Birch White', hex:'#FDF9EC' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

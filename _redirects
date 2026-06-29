@@ -1,0 +1,12 @@
+# Serve the homepage at the root URL without changing the address bar
+/                 /index.dc.html        200
+
+# Friendly clean URLs → the real .dc.html files
+/menu             /menu.dc.html         301
+/story            /story.dc.html        301
+/our-story        /story.dc.html        301
+/stories          /journal.dc.html      301
+/journal          /journal.dc.html      301
+/franchise        /franchise.dc.html    301
+/contact          /contact.dc.html      301
+/storybook        /storybook.dc.html    301

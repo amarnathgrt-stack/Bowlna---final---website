@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bowlna — form registration</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<!--
+  Static form definitions so Netlify can detect them at deploy time.
+  The live forms on contact.dc.html and franchise.dc.html are rendered by
+  JavaScript, which Netlify's build-time crawler can't see — these hidden
+  stubs register the form names + fields so real submissions are accepted.
+  You never need to visit this page.
+-->
+
+<form name="feedback" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="feedback">
+  <input name="bot-field">
+  <input name="name">
+  <input name="email" type="email">
+  <input name="topic">
+  <input name="rating">
+  <textarea name="message"></textarea>
+</form>
+
+<form name="franchise" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="franchise">
+  <input name="bot-field">
+  <input name="name">
+  <input name="company">
+  <input name="email" type="email">
+  <input name="phone">
+  <input name="location">
+  <input name="site_type">
+  <textarea name="message"></textarea>
+</form>
+
+</body>
+</html>
